@@ -190,8 +190,8 @@ For s = 103 To 104  'This is a comment to describe the outer s loop is for peopl
      .Item("http://schemas.microsoft.com/cdo/configuration/sendusing") = 2
      .Item("http://schemas.microsoft.com/cdo/configuration/smtpserver") = "smtp.gmail.com"
      .Item("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate") = 1
-     .Item("http://schemas.microsoft.com/cdo/configuration/sendusername") = "marcus.twyford@7hills.org"
-     .Item("http://schemas.microsoft.com/cdo/configuration/sendpassword") = "R3n308C0n8!9"
+     .Item("http://schemas.microsoft.com/cdo/configuration/sendusername") = "myemail@7hills.org"
+     .Item("http://schemas.microsoft.com/cdo/configuration/sendpassword") = "password"
      .Item("http://schemas.microsoft.com/cdo/configuration/smtpserverport") = 465
      .Item("http://schemas.microsoft.com/cdo/configuration/smtpusessl") = True
      .Update
@@ -204,7 +204,7 @@ For s = 103 To 104  'This is a comment to describe the outer s loop is for peopl
     CDO_Mail.Subject = strSubject
     CDO_Mail.From = strFrom
     CDO_Mail.To = strTo
-    CDO_Mail.HTMLBody = strBody
+    CDO_Mail.HTMLBody = strBody   ' Use .TextBody for Plain text, use .HTML body for embedding HTML 
     CDO_Mail.CC = strCc
     CDO_Mail.BCC = strBcc
     CDO_Mail.Send
