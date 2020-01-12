@@ -30,4 +30,10 @@ let me know if you need some help
 
 
 P.S. make sure you have a SOLID connection - my code crapped out several times when wifi slowed/dropped..
+anticipating issues, I used my sent folder and compared 200 emails, one at a time, to what was in the excel sheet...
+what was I thinking
+
+N.A.V.Y.   Never Again Volunteer Yourself
+
+
 mlt 1/12/2020
