@@ -1,0 +1,219 @@
+Sub send_email()
+
+Dim CDO_Mail As Object
+Dim CDO_Config As Object
+Dim SMTP_Config As Variant
+Dim strSubject As String
+Dim strFrom As String
+Dim strTo As String
+Dim strCc As String
+Dim strBcc As String
+Dim strhtml As String
+Dim strBody As String
+
+For s = 103 To 104  'This is a comment to describe the outer s loop is for people
+    
+    
+    strSubject = "SHS Student Teacher Conferences, Jan 13-17, 2020"
+    strFrom = "marcus.twyford@7hills.org"
+    strTo = Sheet1.Cells(s, 2).Value & "@7hills.org"    'Sheet1.Cells(3, 3).Value & "
+    strCc = Sheet1.Cells(s, 4).Value & "@7hills.org"    ' "Advisor cells" & "@7hills.org"
+    strBcc = "marcus.twyford@7hills.org"
+    
+    strhtml = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>"
+    strhtml = strhtml & "<html xmlns='http://www.w3.org/1999/xhtml'>"
+    strhtml = strhtml & "<head>"
+    strhtml = strhtml & "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />"
+    strhtml = strhtml & "<title>SHS Student Teacher Conferences</title>"
+    strhtml = strhtml & "<meta name='viewport' content='width=device-width, initial-scale=1.0'/>"
+    strhtml = strhtml & "</head>"
+    strhtml = strhtml & "<body style='margin: 0; padding: 0;'>"
+    strhtml = strhtml & "<table border='0' cellpadding='0' cellspacing='0' width='100%'>"
+    strhtml = strhtml & "<tr>"
+    strhtml = strhtml & "<td style='padding: 10px 0 30px 0;'>"
+    strhtml = strhtml & "<table align='center' border='0' cellpadding='0' cellspacing='0' width='600' style='border: 1px solid #cccccc; border-collapse: collapse;'>"
+    strhtml = strhtml & "<tr>"
+    strhtml = strhtml & "<td align='center' bgcolor='#002d72' style='padding: 40px 0 30px 0; color: #153643; font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;'>"
+    strhtml = strhtml & "<img src='https://studentteacherconf.twyford-student.repl.co/emailheader.jpg' alt='Creating Email Magic' width='450' height='230' style='display: block;' />"
+    strhtml = strhtml & "</td>"
+    strhtml = strhtml & "</tr>"
+    strhtml = strhtml & "<tr>"
+    strhtml = strhtml & "<td bgcolor='#ffffff' style='padding: 40px 30px 40px 30px;'>"
+    strhtml = strhtml & "<table border='0' cellpadding='0' cellspacing='0' width='100%'>"
+    strhtml = strhtml & "<tr>"
+    strhtml = strhtml & "<td style='color: #153643; font-family: Arial, sans-serif; font-size: 24px;'>"
+    strhtml = strhtml & "<b>Your Scheduled Student Teacher Conferences</b>"
+    strhtml = strhtml & "</td>"
+    strhtml = strhtml & "</tr>"
+    strhtml = strhtml & "<tr>"
+    strhtml = strhtml & "<td style='padding: 5px 0 5px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;'>"
+    strhtml = strhtml & "Student: " & Sheet1.Cells(s, 1).Value  'Auto-Field student name
+    strhtml = strhtml & "</td>"
+    strhtml = strhtml & "</tr> <tr>"
+    strhtml = strhtml & "<tr>"
+    strhtml = strhtml & "<td>"
+    strhtml = strhtml & "Advisor: " & Sheet1.Cells(s, 3).Value  'Auto-Field advisor name
+    strhtml = strhtml & "</td>"
+    strhtml = strhtml & "</tr> <tr>"
+    strhtml = strhtml & "<td style='padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;'>"
+    strhtml = strhtml & "The following table shows a list of dates and times that teachers have requested you meet with them. A separate email will be sent with meeting locations."
+    strhtml = strhtml & " Please see your teacher during the times posted. A note went home in last weeks newsletter that students will be expected to attend the requested student teacher conferences."
+    strhtml = strhtml & " Your advisor is cc'd on this email."
+    strhtml = strhtml & "</td>"
+    strhtml = strhtml & "</tr><tr>"
+    strhtml = strhtml & "<td>"
+    strhtml = strhtml & "<table border='1' cellpadding='0' cellspacing='0' width='100%'>"
+    strhtml = strhtml & "<tr> <td width='260' valign='top'>"
+    strhtml = strhtml & "<table border='1' cellpadding='0' cellspacing='0' width='100%'>"
+    strhtml = strhtml & "<tr>"
+    strhtml = strhtml & "<th colspan='5'>Monday January 13, 2020 <br> </th>"
+    strhtml = strhtml & "</tr> <tr>"
+    strhtml = strhtml & "<td width='20%'> 2:40-2:47<br></td>"
+    strhtml = strhtml & "<td width='20%'> 2:50-2:57<br></td>"
+    strhtml = strhtml & "<td width='20%'> 3:00-3:07<br></td>"
+    strhtml = strhtml & "<td width='20%'> 3:10-3:17<br></td>"
+    strhtml = strhtml & "<td width='20%'> 3:20-3:27<br></td>"
+    strhtml = strhtml & "</tr> <tr>"
+    strhtml = strhtml & "<td><em>" & Sheet1.Cells(s, 5).Value & "<br></em></td>"
+    strhtml = strhtml & "<td><em>" & Sheet1.Cells(s, 6).Value & "<br></em></td>"
+    strhtml = strhtml & "<td><em>" & Sheet1.Cells(s, 7).Value & "<br></em></td>"
+    strhtml = strhtml & "<td><em>" & Sheet1.Cells(s, 8).Value & "<br></em></td>"
+    strhtml = strhtml & "<td><em>" & Sheet1.Cells(s, 9).Value & "<br></em></td>"
+    strhtml = strhtml & "</tr> <tr>"
+    strhtml = strhtml & "<th colspan='5'>Wednesday January 15, 2020<br> </th>"
+    strhtml = strhtml & "</tr > <tr>"
+    strhtml = strhtml & "<td> 2:40-2:47<br></td>"
+    strhtml = strhtml & "<td> 2:50-2:57<br></td>"
+    strhtml = strhtml & "<td> 3:00-3:07<br></td>"
+    strhtml = strhtml & "<td> 3:10-3:17<br></td>"
+    strhtml = strhtml & "<td> 3:20-3:27<br></td>"
+    strhtml = strhtml & "</tr> <tr>"
+    strhtml = strhtml & "<td><em>" & Sheet1.Cells(s, 11).Value & "<br></em></td>"
+    strhtml = strhtml & "<td><em>" & Sheet1.Cells(s, 12).Value & "<br></em></td>"
+    strhtml = strhtml & "<td><em>" & Sheet1.Cells(s, 13).Value & "<br></em></td>"
+    strhtml = strhtml & "<td><em>" & Sheet1.Cells(s, 14).Value & "<br></em></td>"
+    strhtml = strhtml & "<td><em>" & Sheet1.Cells(s, 15).Value & "<br></em></td>"
+    strhtml = strhtml & "</tr> <tr>"
+    strhtml = strhtml & "<th colspan='5'> Thursday January 16, 2020<br> </th>"
+    strhtml = strhtml & "</tr > <tr>"
+    strhtml = strhtml & "<td> 2:40-2:47<br></td>"
+    strhtml = strhtml & "<td> 2:50-2:57<br></td>"
+    strhtml = strhtml & "<td> 3:00-3:07<br></td>"
+    strhtml = strhtml & "<td> 3:10-3:17<br></td>"
+    strhtml = strhtml & "<td> 3:20-3:27<br></td>"
+    strhtml = strhtml & "</tr> <tr>"
+    strhtml = strhtml & "<td><em>" & Sheet1.Cells(s, 16).Value & "<br></em></td>"
+    strhtml = strhtml & "<td><em>" & Sheet1.Cells(s, 17).Value & "<br></em></td>"
+    strhtml = strhtml & "<td><em>" & Sheet1.Cells(s, 18).Value & "<br></em></td>"
+    strhtml = strhtml & "<td><em>" & Sheet1.Cells(s, 19).Value & "<br></em></td>"
+    strhtml = strhtml & "<td><em>" & Sheet1.Cells(s, 20).Value & "<br></em></td>"
+    strhtml = strhtml & "</tr> <tr>"
+    strhtml = strhtml & "<th colspan='5'> Friday January 17, 2020<br> </th>"
+    strhtml = strhtml & "</tr> <tr>"
+    strhtml = strhtml & "<td> 2:40-2:47<br></td>"
+    strhtml = strhtml & "<td> 2:50-2:57<br></td>"
+    strhtml = strhtml & "<td> 3:00-3:07<br></td>"
+    strhtml = strhtml & "<td> 3:10-3:17<br></td>"
+    strhtml = strhtml & "<td> 3:20-3:27<br></td>"
+    strhtml = strhtml & "</tr> <tr>"
+    strhtml = strhtml & "<td><em>" & Sheet1.Cells(s, 21).Value & "<br></em></td>"
+    strhtml = strhtml & "<td><em>" & Sheet1.Cells(s, 22).Value & "<br></em></td>"
+    strhtml = strhtml & "<td><em>" & Sheet1.Cells(s, 23).Value & "<br></em></td>"
+    strhtml = strhtml & "<td><em>" & Sheet1.Cells(s, 24).Value & "<br></em></td>"
+    strhtml = strhtml & "<td><em>" & Sheet1.Cells(s, 25).Value & "<br></em></td>"
+    strhtml = strhtml & "</tr>"
+    strhtml = strhtml & "</table>"
+    strhtml = strhtml & "</td>"
+    strhtml = strhtml & "</tr>"
+    strhtml = strhtml & "</table>"
+    strhtml = strhtml & "</td>"
+    strhtml = strhtml & "</tr>"
+    strhtml = strhtml & "</table>"
+    strhtml = strhtml & "</td>"
+    strhtml = strhtml & "</tr>"
+    strhtml = strhtml & "<tr>"
+    strhtml = strhtml & "<td bgcolor='#002d72' style='padding: 30px 30px 30px 30px;'>"
+    strhtml = strhtml & "<table border='0' cellpadding='0' cellspacing='0' width='100%'>"
+    strhtml = strhtml & "<tr>"
+    strhtml = strhtml & "<td style='color: #ffffff; font-family: Arial, sans-serif; font-size: 14px;' width='75%'>"
+    strhtml = strhtml & "<a href='http://www.7hills.org' style='color: #ffffff;'><font color='#ffffff'>7Hills.org</font></a>  |  "
+    strhtml = strhtml & "<a href='http://7hills.schoology.com' style='color: #ffffff;'><font color='#ffffff'>Schoology</font></a>  |  "
+    strhtml = strhtml & "<a href='http://my.7hills.org' style='color: #ffffff;'><font color='#ffffff'>My 7Hills</font></a>"
+    strhtml = strhtml & "</td>"
+    strhtml = strhtml & "<td align='right' width='25%'>"
+    strhtml = strhtml & "<table border='0' cellpadding='0' cellspacing='0'>"
+    strhtml = strhtml & "<tr>"
+    strhtml = strhtml & "<td style='font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;'>"
+    strhtml = strhtml & "<a href='http://www.twitter.com/compuducation' style='color: #ffffff;'>"
+    strhtml = strhtml & "<img src='https://studentteacherconf--twyford-student.repl.co/twitter.png' alt='Twitter' width='38' height='38' style='display: block;' border='0' />"
+    strhtml = strhtml & "</a>"
+    strhtml = strhtml & "</td>"
+    strhtml = strhtml & "<td style='font-size: 0; line-height: 0;' width='20'>&nbsp;</td>"
+    strhtml = strhtml & "<td style='font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;'>"
+    strhtml = strhtml & "<a href='https://www.facebook.com/TheSevenHillsSchool/' style='color: #ffffff;'>"
+    strhtml = strhtml & "<img src='https://studentteacherconf--twyford-student.repl.co/facebook.png' alt='Facebook' width='38' height='38' style='display: block;' border='0' />"
+    strhtml = strhtml & "</a>"
+    strhtml = strhtml & "</td>"
+    strhtml = strhtml & "</tr>"
+    strhtml = strhtml & "</table>"
+    strhtml = strhtml & "</td>"
+    strhtml = strhtml & "</tr>"
+    strhtml = strhtml & "</table>"
+    strhtml = strhtml & "</td>"
+    strhtml = strhtml & "</tr>"
+    strhtml = strhtml & "</table>"
+    strhtml = strhtml & "</td>"
+    strhtml = strhtml & "</tr>"
+    strhtml = strhtml & "</table>"
+    strhtml = strhtml & "</body>"
+    strhtml = strhtml & "</html>"
+
+    
+    strBody = strhtml
+
+    
+    'For s = 1 To 500    'This is a comment
+    '    For i = 1 To 6
+    '        Cells(i, 1).Value = 100
+    '    Next i
+    
+    
+    Set CDO_Mail = CreateObject("CDO.Message")
+    On Error GoTo Error_Handling
+    
+    Set CDO_Config = CreateObject("CDO.Configuration")
+    CDO_Config.Load -1
+    
+    Set SMTP_Config = CDO_Config.Fields
+    
+    With SMTP_Config
+     .Item("http://schemas.microsoft.com/cdo/configuration/sendusing") = 2
+     .Item("http://schemas.microsoft.com/cdo/configuration/smtpserver") = "smtp.gmail.com"
+     .Item("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate") = 1
+     .Item("http://schemas.microsoft.com/cdo/configuration/sendusername") = "marcus.twyford@7hills.org"
+     .Item("http://schemas.microsoft.com/cdo/configuration/sendpassword") = "R3n308C0n8!9"
+     .Item("http://schemas.microsoft.com/cdo/configuration/smtpserverport") = 465
+     .Item("http://schemas.microsoft.com/cdo/configuration/smtpusessl") = True
+     .Update
+    End With
+    
+    With CDO_Mail
+     Set .Configuration = CDO_Config
+    End With
+    
+    CDO_Mail.Subject = strSubject
+    CDO_Mail.From = strFrom
+    CDO_Mail.To = strTo
+    CDO_Mail.HTMLBody = strBody
+    CDO_Mail.CC = strCc
+    CDO_Mail.BCC = strBcc
+    CDO_Mail.Send
+    
+Error_Handling:
+    If Err.Description <> "" Then MsgBox Err.Description
+
+Next s
+
+
+End Sub
+
