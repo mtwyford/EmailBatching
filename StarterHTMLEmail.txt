@@ -1,4 +1,7 @@
 <!-- I know it's an HTML file - it's for you to see the HTML, not the preview.. -->
+<!--  Thanks to tuts+ for your help getting me started -->
+<!-- https://webdesign.tutsplus.com/articles/build-an-html-email-template-from-scratch--webdesign-12770 -->
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
